@@ -1,428 +1,457 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huca Food | Эксклюзивный Вьетнамский Кофе</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17829892914"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17829892914');
+    </script>
     
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-17829892914/bFDICJ6f4d0bELKm-rVC',
+          'transaction_id': '',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+    <title>Anuken | Разработчик сайтов</title>
+    <meta name="description" content="Создание продающих сайтов и настройка контекстной рекламы. Комплексный маркетинг для бизнеса.">
+
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], tech: ['Space Grotesk', 'sans-serif'] },
+                    colors: { brand: { dark: '#020617', card: '#0f172a', accent: '#6366f1' } },
+                    animation: { 'blob': 'blob 7s infinite', 'scroll': 'scroll 20s linear infinite' },
+                    keyframes: {
+                        blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
+                        scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --gold: #D4AF37; 
-            --gold-gradient: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --bg-dark: #050505;
-            --bg-card: #111111;
-            --text-main: #E0E0E0;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        h1, h2, h3, h4, .price-tag, .brand-name {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* --- HEADER & MOBILE MENU --- */
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 30px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
-        }
-
-        .brand-name {
-            font-size: 28px;
-            font-weight: 700;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Обычное меню для ПК */
-        .nav-desktop { display: flex; gap: 30px; }
-        .nav-desktop a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .nav-desktop a:hover { color: var(--gold); }
-
-        /* Кнопка меню для мобильных */
-        .mobile-menu-btn { display: none; color: var(--gold); font-size: 24px; cursor: pointer; }
-
-        /* Мобильное меню (скрыто) */
-        .mobile-nav {
-            position: fixed;
-            top: 0; right: -100%;
-            width: 70%;
-            height: 100vh;
-            background: #111;
-            display: flex;
-            flex-direction: column;
-            padding-top: 80px;
-            padding-left: 30px;
-            transition: 0.4s;
-            z-index: 999;
-            border-left: 1px solid var(--gold);
-        }
-        .mobile-nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 20px;
-            margin-bottom: 25px;
-            font-family: 'Cormorant Garamond', serif;
-            text-transform: uppercase;
-        }
-        .mobile-nav.active { right: 0; }
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 998;
-            display: none;
-        }
-        .overlay.active { display: block; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(5,5,5,1)), 
-                        url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=2574&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin: 0;
-            color: var(--gold);
-            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 20px auto 40px;
-            font-weight: 300;
-            color: #ccc;
-        }
-
-        .btn-gold {
-            padding: 15px 45px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.4s;
-        }
-        .btn-gold:hover { background: var(--gold); color: #000; }
-
-        /* --- PRODUCTS GRID --- */
-        .category-header { text-align: center; margin-top: 100px; margin-bottom: 50px; }
-        .category-header h2 { font-size: 3.5rem; margin: 0; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-5px); border-color: #6366f1; box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3); }
+        .text-gradient { background: linear-gradient(to right, #818cf8, #c084fc, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: gradient 5s linear infinite; }
+        @keyframes gradient { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+        .grid-bg { background-image: linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px); background-size: 50px 50px; mask-image: radial-gradient(circle at center, black, transparent 80%); }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #020617; } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 0 5%;
-        }
+        /* Мобильное меню */
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        #mobile-menu.open { transform: translateX(0); }
+        #mobile-menu.closed { transform: translateX(100%); }
 
-        .product-card {
-            background: var(--bg-card);
-            border: 1px solid #222;
-            padding: 20px;
-            text-align: center;
-            transition: 0.4s;
-        }
-        .product-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-
-        /* --- РАМКИ ДЛЯ ФОТО --- */
-        .photo-frame {
-            width: 100%;
-            height: 320px;
-            border: 1px dashed #444;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            background: #0a0a0a;
-            color: #555;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-        /* В будущем, когда добавите <img> внутри .photo-frame, удалите стили выше или добавьте класс .loaded */
-        .photo-frame img {
-            width: 100%; height: 100%; object-fit: contain; display: block;
-        }
-
-        .card-info h4 { font-size: 1.8rem; margin: 10px 0; color: #fff; }
-        .desc { font-size: 13px; color: #999; margin-bottom: 15px; height: 50px; overflow: hidden;}
-        .price-tag { font-size: 1.6rem; color: var(--gold); display: block; margin-bottom: 15px; }
-        
-        .btn-order {
-            display: inline-block;
-            padding: 10px 0;
-            width: 100%;
-            border-top: 1px solid #333;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        .btn-order:hover { color: var(--gold); border-color: var(--gold); }
-
-        /* --- FOOTER & DEVELOPER --- */
-        footer {
-            background: #000;
-            padding: 60px 20px 20px;
-            margin-top: 100px;
-            border-top: 1px solid #222;
-            text-align: center;
-        }
-        .dev-link {
-            display: inline-block;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #444;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            padding-bottom: 2px;
-            transition: 0.3s;
-        }
-        .dev-link:hover { color: var(--gold); border-color: var(--gold); }
-
-        /* --- MEDIA QUERIES (Адаптация) --- */
-        @media (max-width: 768px) {
-            .nav-desktop { display: none; } /* Скрываем обычное меню */
-            .mobile-menu-btn { display: block; } /* Показываем кнопку */
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; padding: 0 20px; }
-            .products-grid { padding: 0 20px; }
-        }
+        /* Анимация FAQ */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0%    {opacity: 0; transform: translateY(-10px)} 100%  {opacity: 1; transform: translateY(0)} }
     </style>
 </head>
-<body>
+<body class="bg-brand-dark text-slate-300 relative overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200">
 
-    <div class="overlay" onclick="toggleMenu()"></div>
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#beans" onclick="toggleMenu()">Зерновой</a>
-        <a href="#drip" onclick="toggleMenu()">Дрип-Кофе</a>
-        <a href="#instant" onclick="toggleMenu()">Растворимый</a>
-        <a href="#contacts" onclick="toggleMenu()">Контакты</a>
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute inset-0 grid-bg opacity-20"></div>
     </div>
 
-    <header>
-        <div class="brand-name">Huca Food</div>
-        
-        <nav class="nav-desktop">
-            <a href="#beans">Зерновой</a>
-            <a href="#drip">Дрип-Кофе</a>
-            <a href="#instant">Растворимый</a>
-            <a href="#contacts">Контакты</a>
-        </nav>
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-tech text-2xl font-bold text-white tracking-tighter flex items-center gap-2 group z-50 relative">
+                <span class="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-sm group-hover:rotate-12 transition duration-300"><i class="fas fa-code"></i></span>
+                ANUKEN
+            </a>
+            
+            <nav class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#services" class="hover:text-white transition hover:scale-105">Услуги</a>
+                <a href="#workflow" class="hover:text-white transition hover:scale-105">Процесс</a>
+                <a href="#results" class="hover:text-white transition hover:scale-105">Портфолио</a>
+                <a href="#faq" class="hover:text-white transition hover:scale-105">Вопросы</a>
+                <a href="https://wa.me/77074534518" onclick="return gtag_report_conversion(this.href);" class="hover:text-white transition hover:scale-105">Контакты</a>
+            </nav>
 
-        <div class="mobile-menu-btn" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+            <a href="https://t.me/Anukenn" onclick="return gtag_report_conversion(this.href);" class="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition text-sm font-semibold text-white group">
+                Telegram <i class="fab fa-telegram-plane group-hover:translate-x-1 transition"></i>
+            </a>
+            
+            <button id="menu-btn" class="md:hidden text-2xl text-white z-50 relative">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div data-aos="fade-up">
-            <h1>Вкус Вьетнама</h1>
-            <p>Премиальный кофе прямо с плантаций Далата.<br>Эксклюзивно от RG Asia Goods.</p>
-            <a href="#beans" class="btn-gold">Каталог</a>
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-brand-dark flex flex-col items-center justify-center gap-8 closed md:hidden">
+        <a href="#services" class="mobile-link text-3xl font-tech text-white hover:text-indigo-500 transition">Услуги</a>
+        <a href="#workflow" class="mobile-link text-3xl font-tech text-white hover:text-indigo-500 transition">Процесс</a>
+        <a href="#results" class="mobile-link text-3xl font-tech text-white hover:text-indigo-500 transition">Портфолио</a>
+        <a href="#faq" class="mobile-link text-3xl font-tech text-white hover:text-indigo-500 transition">Вопросы</a>
+        <a href="https://wa.me/77074534518" onclick="return gtag_report_conversion(this.href);" class="mobile-link text-3xl font-tech text-white hover:text-indigo-500 transition">Контакты</a>
+        <a href="https://t.me/Anukenn" onclick="return gtag_report_conversion(this.href);" class="px-8 py-3 rounded-full bg-indigo-600 text-white font-bold">Telegram</a>
+    </div>
+
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/image.png" alt="Background" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/70 to-brand-dark/40"></div>
+        </div>
+
+        <div class="container mx-auto px-6 z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold mb-6 backdrop-blur-sm">
+                    <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
+                    AVAILABLE FOR PROJECTS
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 font-tech">
+                    Разрабатываю <br> <span class="text-gradient">Продающие Сайты</span>
+                </h1>
+                <p class="text-lg text-slate-300 mb-8 max-w-lg leading-relaxed">
+                    Комплексный подход. Создаю сайты и настраиваю поток клиентов из Google. 
+                    <span class="text-white font-medium border-b border-indigo-500/50">Без посредников.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/77074534518" onclick="return gtag_report_conversion(this.href);" class="px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform hover:-translate-y-1 text-center flex items-center justify-center gap-3">
+                        <i class="fab fa-whatsapp text-xl"></i> Обсудить проект
+                    </a>
+                    <a href="#results" class="px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 backdrop-blur text-white font-bold border border-slate-600 transition text-center">
+                        Мои работы
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden md:block" data-aos="fade-left">
+                <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-30 animate-pulse"></div>
+                <div class="relative bg-brand-card/90 backdrop-blur border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div><div class="w-3 h-3 rounded-full bg-yellow-500"></div><div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="font-mono text-sm leading-relaxed">
+                        <div class="text-slate-400"><span class="text-purple-400">const</span> <span class="text-blue-400">Project</span> = {</div>
+                        <div class="pl-4 text-slate-300">dev: <span class="text-green-400">'Anuken'</span>,</div>
+                        <div class="pl-4 text-slate-300">skills: [<span class="text-orange-400">'Web'</span>, <span class="text-orange-400">'Ads'</span>],</div>
+                        <div class="pl-4 text-slate-300">result: <span class="text-green-400">'Profit 📈'</span>,</div>
+                        <div class="pl-4">}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div id="beans" class="category-header">
-        <h2>Зерновой Кофе</h2>
-    </div>
+    <section class="py-8 bg-brand-dark border-y border-white/5 overflow-hidden relative z-20">
+         <div class="flex animate-scroll whitespace-nowrap gap-16 items-center opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500">
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-html5 text-orange-500 text-3xl"></i> HTML5</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-css3-alt text-blue-500 text-3xl"></i> CSS3</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-js text-yellow-400 text-3xl"></i> JavaScript</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-google text-red-500 text-3xl"></i> Google Ads</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fas fa-chart-line text-orange-400 text-3xl"></i> Analytics</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-html5 text-orange-500 text-3xl"></i> HTML5</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-css3-alt text-blue-500 text-3xl"></i> CSS3</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-js text-yellow-400 text-3xl"></i> JavaScript</div>
+            <div class="flex items-center gap-2 text-xl font-tech"><i class="fab fa-google text-red-500 text-3xl"></i> Google Ads</div>
+        </div>
+    </section>
 
-    <div class="products-grid">
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame">
-                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
-                <span>Сюда фото Culi</span>
+    <section id="services" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-indigo-500 font-bold tracking-widest text-sm uppercase mb-3">Что я предлагаю</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white font-tech">Услуги под ключ</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-indigo-500/20 rounded-xl flex items-center justify-center text-2xl text-indigo-400 mb-6 border border-indigo-500/20"><i class="fas fa-laptop-code"></i></div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Landing Page</h4>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Одностраничный сайт с высокой конверсией. Идеально для продажи услуг или товаров.</p>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-500"></i> Уникальный дизайн</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-500"></i> Адаптация под телефон</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-500"></i> Хостинг в подарок</li>
+                    </ul>
                 </div>
-            <div class="card-info">
-                <h4>Culi Robusta</h4>
-                <p class="desc">Насыщенный вкус с шоколадно-ореховыми нотками. 500 гр.</p>
-                <span class="price-tag">5 472 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.15)]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-b-lg">ТОП ВЫБОР</div>
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center text-2xl text-purple-400 mb-6 border border-purple-500/20"><i class="fab fa-google"></i></div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Сайт + Реклама</h4>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Создаю сайт и сразу запускаю рекламу в Google. Звонки пойдут в первый день.</p>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-500"></i> Сбор ключевых слов</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-500"></i> Настройка аналитики</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-500"></i> Ведение 1 месяц</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-cyan-500/20 rounded-xl flex items-center justify-center text-2xl text-cyan-400 mb-6 border border-cyan-500/20"><i class="fas fa-tools"></i></div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Тех. Поддержка</h4>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Исправлю ошибки на старом сайте, обновлю фото, текст и ускорю загрузку.</p>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-cyan-500"></i> Правка кода</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-cyan-500"></i> Замена контента</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-cyan-500"></i> Оптимизация</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame">
-                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
-                <span>Сюда фото Arabica</span>
-            </div>
-            <div class="card-info">
-                <h4>Arabica Cau Dat</h4>
-                <p class="desc">Мягкий вкус с нежной кислинкой. 500 гр.</p>
-                <span class="price-tag">7 022 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame">
-                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
-                <span>Сюда фото Robusta</span>
-            </div>
-            <div class="card-info">
-                <h4>Robusta Dak Lak</h4>
-                <p class="desc">Крепкий кофе с классической горчинкой. 500 гр.</p>
-                <span class="price-tag">5 814 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
+    <section id="workflow" class="py-24 bg-brand-dark relative z-10 overflow-hidden">
+        <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-white/10 -translate-y-1/2 z-0"></div>
         
-         <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame">
-                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
-                <span>Сюда фото Luwak</span>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-indigo-500 font-bold tracking-widest text-sm uppercase mb-3">Workflow</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white font-tech">Как мы работаем</h3>
             </div>
-            <div class="card-info">
-                <h4>Luwak Exclusive</h4>
-                <p class="desc">Легендарный сорт. Самый дорогой и редкий. 500 гр.</p>
-                <span class="price-tag">10 713 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-    </div>
 
-    <div id="drip" class="category-header">
-        <h2>Дрип-Пакеты</h2>
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-6xl font-tech font-bold text-white/5 absolute top-2 right-4 group-hover:text-indigo-500/10 transition">01</div>
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center text-indigo-400 mb-6 text-xl"><i class="fas fa-search"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-3">Анализ</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Погружаюсь в нишу. Изучаю конкурентов и составляю структуру, которая будет продавать.</p>
+                </div>
 
-    <div class="products-grid">
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame"><span>Фото Дрип Арабика</span></div>
-            <div class="card-info">
-                <h4>Arabica Drip</h4>
-                <p class="desc">12 пакетиков. Идеальный фильтр-кофе.</p>
-                <span class="price-tag">3 209 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame"><span>Фото Дрип Робуста</span></div>
-            <div class="card-info">
-                <h4>Robusta Drip</h4>
-                <p class="desc">12 пакетиков. Крепкий заряд бодрости.</p>
-                <span class="price-tag">3 008 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-    </div>
+                <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-6xl font-tech font-bold text-white/5 absolute top-2 right-4 group-hover:text-purple-500/10 transition">02</div>
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 mb-6 text-xl"><i class="fas fa-pencil-ruler"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-3">Дизайн</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Создаю современный макет. Утверждаем внешний вид сайта до написания кода.</p>
+                </div>
 
-    <div id="instant" class="category-header">
-        <h2>Растворимый Кофе</h2>
-    </div>
+                <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-6xl font-tech font-bold text-white/5 absolute top-2 right-4 group-hover:text-cyan-500/10 transition">03</div>
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400 mb-6 text-xl"><i class="fas fa-code"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-3">Разработка</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Пишу чистый код (HTML/CSS/JS). Адаптирую под телефоны и настраиваю анимации.</p>
+                </div>
 
-    <div class="products-grid">
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame"><span>Фото 3в1</span></div>
-            <div class="card-info">
-                <h4>C7 Instant 3in1</h4>
-                <p class="desc">Большая упаковка 50 стиков. Классика.</p>
-                <span class="price-tag">5 192 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
+                <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-6xl font-tech font-bold text-white/5 absolute top-2 right-4 group-hover:text-green-500/10 transition">04</div>
+                    <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 mb-6 text-xl"><i class="fas fa-rocket"></i></div>
+                    <h4 class="text-xl font-bold text-white mb-3">Запуск</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Подключаем домен, заливаем на хостинг и запускаем поток клиентов (Google Ads).</p>
+                </div>
             </div>
         </div>
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame"><span>Фото Кокос</span></div>
-            <div class="card-info">
-                <h4>Coconut Cappuccino</h4>
-                <p class="desc">50 стиков. Нежный кокосовый вкус.</p>
-                <span class="price-tag">7 152 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-        <div class="product-card" data-aos="fade-up">
-            <div class="photo-frame"><span>Фото Дуриан</span></div>
-            <div class="card-info">
-                <h4>Durian Cappuccino</h4>
-                <p class="desc">16 стиков. Экзотический вкус дуриана.</p>
-                <span class="price-tag">2 012 ₸</span>
-                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <footer id="contacts">
-        <div style="max-width: 600px; margin: 0 auto; text-align: left; color: #888; font-size: 14px; line-height: 2;">
-            <h3 style="color: var(--gold); text-align: center; margin-bottom: 30px;">Реквизиты</h3>
-            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
-                <span>Компания:</span> <span style="color: #fff">ТОО "RG Asia Goods"</span>
-            </div>
-            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
-                <span>БИН:</span> <span style="color: #fff">250740015886</span>
-            </div>
-            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
-                <span>Контакты:</span> <span style="color: #fff">+7 708 271 4240</span>
-            </div>
-            <div style="margin-top: 20px; text-align: center;">
-                <p>г. Каскелен, ул. Кызылсай, 4/3</p>
+    <section class="py-12 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass p-6 rounded-xl text-center hover:bg-white/5 transition" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-3xl text-indigo-400 mb-3"><i class="fas fa-code"></i></div>
+                    <h4 class="text-white font-bold mb-1">Чистый Код</h4>
+                    <p class="text-xs text-slate-400">Никаких конструкторов. Сайт летает.</p>
+                </div>
+                <div class="glass p-6 rounded-xl text-center hover:bg-white/5 transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl text-purple-400 mb-3"><i class="fab fa-google"></i></div>
+                    <h4 class="text-white font-bold mb-1">Google Ads</h4>
+                    <p class="text-xs text-slate-400">Настройка рекламы без слива бюджета.</p>
+                </div>
+                <div class="glass p-6 rounded-xl text-center hover:bg-white/5 transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl text-green-400 mb-3"><i class="fas fa-headset"></i></div>
+                    <h4 class="text-white font-bold mb-1">24/7 Связь</h4>
+                    <p class="text-xs text-slate-400">Всегда на связи в WhatsApp/Telegram.</p>
+                </div>
+                <div class="glass p-6 rounded-xl text-center hover:bg-white/5 transition" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl text-cyan-400 mb-3"><i class="fas fa-shield-alt"></i></div>
+                    <h4 class="text-white font-bold mb-1">Гарантия</h4>
+                    <p class="text-xs text-slate-400">Бесплатная техподдержка 1 месяц.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <br><br>
-        <a href="https://anukenn.vercel.app/" target="_blank" class="dev-link">
-            Разработка сайта: Anuken
-        </a>
+    <section id="results" class="py-24 bg-brand-dark/50 border-t border-white/5 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-purple-500 font-bold tracking-widest text-sm uppercase mb-3">Портфолио</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white font-tech">Мои проекты</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-aos="fade-up">
+                    <div class="h-56 relative overflow-hidden group-hover:scale-105 transition duration-500">
+                        <img src="images/manipulator.jpg" class="w-full h-full object-cover" alt="Сайт Манипулятора">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10"></div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full z-20">LIVE</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-2">Аренда Манипулятора</h4>
+                        <p class="text-sm text-slate-400 mb-6">Современный Landing Page для спецтехники. Адаптивный дизайн, интеграция с WhatsApp.</p>
+                        <div class="mt-auto">
+                            <a href="https://manipulator-evakuator.vercel.app/" target="_blank" class="w-full block py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-center font-bold transition shadow-lg shadow-indigo-500/20">Перейти на сайт <i class="fas fa-external-link-alt ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden group-hover:scale-105 transition duration-500">
+                         <img src="images/elegance.jpg" class="w-full h-full object-cover" alt="Сайт Салона">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full z-20">LIVE</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-2">Салон красоты ELEGANCE</h4>
+                        <p class="text-sm text-slate-400 mb-6">Премиальный сайт для салона. Анимации, прайс-лист, галерея и темная тема.</p>
+                        <div class="mt-auto">
+                            <a href="https://elegance-almaty.vercel.app/" target="_blank" class="w-full block py-3 rounded-lg bg-pink-700 hover:bg-pink-600 text-white text-center font-bold transition shadow-lg shadow-pink-500/20">Перейти на сайт <i class="fas fa-external-link-alt ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden group-hover:scale-105 transition duration-500">
+                        <img src="images/maverick.jpg" class="w-full h-full object-cover" alt="Сайт Барбершопа">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full z-20">LIVE</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-2">Maverick Barbershop</h4>
+                        <p class="text-sm text-slate-400 mb-6">Брутальный сайт для барбершопа. Темная тема, "шум" на фоне, прайс-лист.</p>
+                        <div class="mt-auto">
+                             <a href="https://maver1ck.vercel.app/" target="_blank" class="w-full block py-3 rounded-lg bg-orange-700 hover:bg-orange-600 text-white text-center font-bold transition shadow-lg shadow-orange-500/20">Перейти на сайт <i class="fas fa-external-link-alt ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <p class="text-slate-500 text-sm mb-6">Хотите такой же мощный результат?</p>
+                <a href="https://wa.me/77074534518" onclick="return gtag_report_conversion(this.href);" class="inline-flex items-center gap-2 text-indigo-400 hover:text-white transition border-b border-indigo-400 hover:border-white pb-1 text-lg">
+                    Обсудить ваш проект <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 relative z-10">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-indigo-500 font-bold tracking-widest text-sm uppercase mb-3">FAQ</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white font-tech">Частые вопросы</h3>
+            </div>
+            
+            <div class="space-y-4">
+                <details class="group glass p-6 rounded-2xl cursor-pointer open:bg-indigo-900/20 transition duration-300" data-aos="fade-up">
+                    <summary class="flex justify-between items-center font-bold text-white list-none">
+                        Сколько времени занимает разработка?
+                        <span class="transition group-open:rotate-180 text-indigo-400"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Обычно разработка Landing Page занимает от пару часов до 2 дней. Более сложные проекты (многостраничные сайты) могут занять 2-5 дней. Я всегда называю точные сроки перед началом работы.
+                    </p>
+                </details>
+
+                <details class="group glass p-6 rounded-2xl cursor-pointer open:bg-indigo-900/20 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <summary class="flex justify-between items-center font-bold text-white list-none">
+                        Нужно ли платить ежемесячно?
+                        <span class="transition group-open:rotate-180 text-indigo-400"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Мне вы платите один раз за разработку. Далее вы оплачиваете только хостинг (место в интернете) — это копейки, примерно 6 000 - 9 000 тенге в ГОД. Никаких скрытых платежей.
+                    </p>
+                </details>
+
+                <details class="group glass p-6 rounded-2xl cursor-pointer open:bg-indigo-900/20 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <summary class="flex justify-between items-center font-bold text-white list-none">
+                        Смогу ли я сам менять текст/цены?
+                        <span class="transition group-open:rotate-180 text-indigo-400"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Да! Если это требуется, я подключаю удобную админ-панель, через которую вы сможете менять цены, фото и тексты за пару кликов, даже с телефона.
+                    </p>
+                </details>
+
+                <details class="group glass p-6 rounded-2xl cursor-pointer open:bg-indigo-900/20 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <summary class="flex justify-between items-center font-bold text-white list-none">
+                        Что нужно для старта?
+                        <span class="transition group-open:rotate-180 text-indigo-400"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Только ваше желание! Напишите мне в WhatsApp, мы обсудим вашу нишу. Если у вас нет текста или фото — не проблема, я помогу их подобрать или написать продающие заголовки.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-[#020617] border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px]"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-tech">Готовы начать?</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+                <a href="https://t.me/Anukenn" target="_blank" onclick="return gtag_report_conversion(this.href);" class="w-full md:w-auto flex items-center justify-center gap-4 bg-[#2AABEE]/10 text-[#2AABEE] border border-[#2AABEE]/20 hover:bg-[#2AABEE] hover:text-white px-8 py-4 rounded-xl transition duration-300">
+                    <i class="fab fa-telegram text-2xl"></i>
+                    <div class="text-left"><div class="text-xs opacity-70">Написать в</div><div class="font-bold">Telegram</div></div>
+                </a>
+                <a href="tel:+77074534518" onclick="return gtag_report_conversion(this.href);" class="w-full md:w-auto flex items-center justify-center gap-4 bg-green-500/10 text-green-500 border border-green-500/20 hover:bg-green-500 hover:text-white px-8 py-4 rounded-xl transition duration-300">
+                    <i class="fas fa-phone-alt text-2xl"></i>
+                    <div class="text-left"><div class="text-xs opacity-70">Позвонить</div><div class="font-bold">+7 707 453 4518</div></div>
+                </a>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600 font-mono">
+                <p>&copy; 2015-2026 Anuken Development.</p>
+                <p>Астана, Казахстан.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({ once: true, duration: 1000, offset: 50 });
 
-        // Скрипт для открытия/закрытия меню
-        function toggleMenu() {
-            const nav = document.getElementById('mobileNav');
-            const overlay = document.querySelector('.overlay');
-            nav.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+        // Мобильное меню
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('closed');
+                mobileMenu.classList.add('open');
+                menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.classList.remove('open');
+                mobileMenu.classList.add('closed');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenu.classList.add('closed');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                isMenuOpen = false;
+            });
+        });
     </script>
 </body>
 </html>
