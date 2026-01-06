@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huca Food | Эксклюзивный Вьетнамский Кофе</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -13,12 +13,11 @@
 
     <style>
         :root {
-            --gold: #D4AF37; /* Основное золото */
-            --gold-light: #F9E59F; /* Светлый блик */
-            --bg-dark: #121212;
-            --bg-card: #1E1E1E;
+            --gold: #D4AF37; 
+            --gold-gradient: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --bg-dark: #050505;
+            --bg-card: #111111;
             --text-main: #E0E0E0;
-            --text-muted: #A0A0A0;
         }
 
         body {
@@ -27,18 +26,17 @@
             color: var(--text-main);
             margin: 0;
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        h1, h2, h3, h4, .price {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
+        h1, h2, h3, h4, .price-tag, .brand-name {
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER & MOBILE MENU --- */
         header {
-            background: rgba(10, 10, 10, 0.95);
-            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -46,51 +44,73 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             box-sizing: border-box;
+            backdrop-filter: blur(10px);
         }
 
-        .brand {
-            display: flex;
-            flex-direction: column;
-        }
         .brand-name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        .brand-sub {
-            font-size: 10px;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
         }
 
-        nav { display: flex; gap: 30px; }
-        nav a {
+        /* Обычное меню для ПК */
+        .nav-desktop { display: flex; gap: 30px; }
+        .nav-desktop a {
             color: #fff;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
-            position: relative;
         }
-        nav a:hover { color: var(--gold); }
-        nav a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--gold); transition: 0.3s;
-        }
-        nav a:hover::after { width: 100%; }
+        .nav-desktop a:hover { color: var(--gold); }
 
-        /* --- HERO --- */
+        /* Кнопка меню для мобильных */
+        .mobile-menu-btn { display: none; color: var(--gold); font-size: 24px; cursor: pointer; }
+
+        /* Мобильное меню (скрыто) */
+        .mobile-nav {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            padding-left: 30px;
+            transition: 0.4s;
+            z-index: 999;
+            border-left: 1px solid var(--gold);
+        }
+        .mobile-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-family: 'Cormorant Garamond', serif;
+            text-transform: uppercase;
+        }
+        .mobile-nav.active { right: 0; }
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 998;
+            display: none;
+        }
+        .overlay.active { display: block; }
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
-            /* Фон: темный градиент + фото кофейных плантаций */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
-                        url('https://images.unsplash.com/photo-1524350876685-274059332603?q=80&w=2671&auto=format&fit=crop');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(5,5,5,1)), 
+                        url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=2574&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -102,24 +122,23 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin: 0;
-            background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            color: var(--gold);
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
+            font-size: 1.2rem;
+            max-width: 600px;
             margin: 20px auto 40px;
             font-weight: 300;
+            color: #ccc;
         }
 
         .btn-gold {
-            padding: 18px 50px;
-            background: transparent;
+            padding: 15px 45px;
             border: 1px solid var(--gold);
             color: var(--gold);
             font-size: 14px;
@@ -128,364 +147,282 @@
             cursor: pointer;
             text-decoration: none;
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
-        .btn-gold::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%; background: var(--gold); z-index: -1; transition: 0.4s;
-        }
-        .btn-gold:hover::before { width: 100%; }
-        .btn-gold:hover { color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+        .btn-gold:hover { background: var(--gold); color: #000; }
 
-        /* --- CATALOG SECTIONS --- */
-        .category-header {
-            text-align: center;
-            margin-top: 120px;
-            margin-bottom: 60px;
-        }
-        .category-header h2 { font-size: 3rem; margin-bottom: 10px; }
-        .category-header p { color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
-
+        /* --- PRODUCTS GRID --- */
+        .category-header { text-align: center; margin-top: 100px; margin-bottom: 50px; }
+        .category-header h2 { font-size: 3.5rem; margin: 0; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            padding: 0 10%;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 5%;
         }
 
         .product-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid #222;
+            padding: 20px;
+            text-align: center;
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
+        .product-card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
-        .img-wrapper {
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-            background: #252525;
+        /* --- РАМКИ ДЛЯ ФОТО --- */
+        .photo-frame {
+            width: 100%;
+            height: 320px;
+            border: 1px dashed #444;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-        .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        .product-card:hover .img-wrapper img { transform: scale(1.05); opacity: 0.7; }
-
-        .card-info { padding: 25px; text-align: center; }
-        .card-info h4 { font-size: 1.2rem; margin: 0 0 10px; color: #fff; letter-spacing: 1px; }
-        .card-info p.desc { font-size: 13px; color: #888; height: 60px; overflow: hidden; margin-bottom: 15px; }
-        .card-info .weight { font-size: 11px; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; display: block; margin-bottom: 10px; }
-        
-        .price-tag {
-            font-size: 1.5rem;
-            color: var(--gold-light);
             margin-bottom: 20px;
-            display: block;
+            background: #0a0a0a;
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        /* В будущем, когда добавите <img> внутри .photo-frame, удалите стили выше или добавьте класс .loaded */
+        .photo-frame img {
+            width: 100%; height: 100%; object-fit: contain; display: block;
         }
 
+        .card-info h4 { font-size: 1.8rem; margin: 10px 0; color: #fff; }
+        .desc { font-size: 13px; color: #999; margin-bottom: 15px; height: 50px; overflow: hidden;}
+        .price-tag { font-size: 1.6rem; color: var(--gold); display: block; margin-bottom: 15px; }
+        
         .btn-order {
             display: inline-block;
-            padding: 10px 30px;
-            background: #fff;
-            color: #000;
+            padding: 10px 0;
+            width: 100%;
+            border-top: 1px solid #333;
+            color: #fff;
             text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-top: 10px;
             transition: 0.3s;
         }
-        .btn-order:hover { background: var(--gold); }
+        .btn-order:hover { color: var(--gold); border-color: var(--gold); }
 
-        /* --- REQUISITES --- */
-        .footer-info {
-            background: #0a0a0a;
-            padding: 80px 10%;
+        /* --- FOOTER & DEVELOPER --- */
+        footer {
+            background: #000;
+            padding: 60px 20px 20px;
             margin-top: 100px;
-            border-top: 1px solid #333;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            border-top: 1px solid #222;
+            text-align: center;
         }
-        .req-block h3 { margin-bottom: 30px; font-size: 1.5rem; }
-        .req-row { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding: 12px 0; font-size: 14px; }
-        .req-row span:first-child { color: #666; }
-        .req-row span:last-child { color: #fff; text-align: right; }
+        .dev-link {
+            display: inline-block;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #444;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2px;
+            transition: 0.3s;
+        }
+        .dev-link:hover { color: var(--gold); border-color: var(--gold); }
 
-        /* --- MOBILE --- */
+        /* --- MEDIA QUERIES (Адаптация) --- */
         @media (max-width: 768px) {
-            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-            .hero h1 { font-size: 2.8rem; }
-            .footer-info { grid-template-columns: 1fr; padding: 40px 20px; }
-            .category-header h2 { font-size: 2rem; }
+            .nav-desktop { display: none; } /* Скрываем обычное меню */
+            .mobile-menu-btn { display: block; } /* Показываем кнопку */
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; padding: 0 20px; }
+            .products-grid { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#beans" onclick="toggleMenu()">Зерновой</a>
+        <a href="#drip" onclick="toggleMenu()">Дрип-Кофе</a>
+        <a href="#instant" onclick="toggleMenu()">Растворимый</a>
+        <a href="#contacts" onclick="toggleMenu()">Контакты</a>
+    </div>
+
     <header>
-        <div class="brand">
-            <span class="brand-name">Huca Food</span>
-            <span class="brand-sub">by RG Asia Goods</span>
-        </div>
-        <nav>
+        <div class="brand-name">Huca Food</div>
+        
+        <nav class="nav-desktop">
             <a href="#beans">Зерновой</a>
             <a href="#drip">Дрип-Кофе</a>
             <a href="#instant">Растворимый</a>
             <a href="#contacts">Контакты</a>
         </nav>
+
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
     <section class="hero">
-        <div data-aos="fade-up" data-aos-duration="1500">
+        <div data-aos="fade-up">
             <h1>Вкус Вьетнама</h1>
-            <p>Эксклюзивный импорт легендарного кофе.<br>Золотой стандарт качества от Huca Food.</p>
-            <a href="#beans" class="btn-gold">Смотреть Коллекцию</a>
+            <p>Премиальный кофе прямо с плантаций Далата.<br>Эксклюзивно от RG Asia Goods.</p>
+            <a href="#beans" class="btn-gold">Каталог</a>
         </div>
     </section>
 
-    <div id="beans" class="category-header" data-aos="fade-up">
-        <p>Premium Beans</p>
+    <div id="beans" class="category-header">
         <h2>Зерновой Кофе</h2>
-        <div style="width: 50px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
     </div>
 
     <div class="products-grid">
         <div class="product-card" data-aos="fade-up">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=800&q=80" alt="Culi Coffee">
-            </div>
+            <div class="photo-frame">
+                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
+                <span>Сюда фото Culi</span>
+                </div>
             <div class="card-info">
-                <span class="weight">Зерно • 500 гр</span>
                 <h4>Culi Robusta</h4>
-                <p class="desc">Глубокий насыщенный вкус с выраженными шоколадно-ореховыми нотками.</p>
+                <p class="desc">Насыщенный вкус с шоколадно-ореховыми нотками. 500 гр.</p>
                 <span class="price-tag">5 472 ₸</span>
-                <a href="https://wa.me/77082714240?text=Хочу заказать Culi 500g" class="btn-order">Заказать</a>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
 
-        <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1587049633312-d64b39171b9c?auto=format&fit=crop&w=800&q=80" alt="Arabica">
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame">
+                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
+                <span>Сюда фото Arabica</span>
             </div>
             <div class="card-info">
-                <span class="weight">Зерно • 500 гр</span>
                 <h4>Arabica Cau Dat</h4>
-                <p class="desc">Мягкие зерна с нежной кислинкой и богатым букетом ароматов.</p>
+                <p class="desc">Мягкий вкус с нежной кислинкой. 500 гр.</p>
                 <span class="price-tag">7 022 ₸</span>
-                <a href="https://wa.me/77082714240?text=Хочу заказать Arabica 500g" class="btn-order">Заказать</a>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
 
-        <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1611854779393-1b2ae9d5af1d?auto=format&fit=crop&w=800&q=80" alt="Robusta">
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame">
+                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
+                <span>Сюда фото Robusta</span>
             </div>
             <div class="card-info">
-                <span class="weight">Зерно • 500 гр</span>
                 <h4>Robusta Dak Lak</h4>
-                <p class="desc">Крепкие зерна с высокой крепостью и классической горчинкой.</p>
+                <p class="desc">Крепкий кофе с классической горчинкой. 500 гр.</p>
                 <span class="price-tag">5 814 ₸</span>
-                <a href="https://wa.me/77082714240?text=Хочу заказать Robusta 500g" class="btn-order">Заказать</a>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
-
-        <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1621939514649-28b12e81658b?auto=format&fit=crop&w=800&q=80" alt="Luwak">
+        
+         <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame">
+                <i class="fas fa-camera fa-2x" style="margin-bottom: 10px; color:#333;"></i>
+                <span>Сюда фото Luwak</span>
             </div>
             <div class="card-info">
-                <span class="weight">Зерно • 500 гр</span>
                 <h4>Luwak Exclusive</h4>
-                <p class="desc">Редкие эксклюзивные зерна с мягким шоколадным послевкусием. Легенда Вьетнама.</p>
+                <p class="desc">Легендарный сорт. Самый дорогой и редкий. 500 гр.</p>
                 <span class="price-tag">10 713 ₸</span>
-                <a href="https://wa.me/77082714240?text=Хочу заказать Luwak 500g" class="btn-order">Заказать</a>
-            </div>
-        </div>
-
-         <div class="product-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1511537632536-b7a4896848a5?auto=format&fit=crop&w=800&q=80" alt="Moka">
-            </div>
-            <div class="card-info">
-                <span class="weight">Зерно • 500 гр</span>
-                <h4>Moka Cầu Đất</h4>
-                <p class="desc">Ароматные зерна с легкой кислинкой, характерной для сорта Мока.</p>
-                <span class="price-tag">8 219 ₸</span>
-                <a href="https://wa.me/77082714240?text=Хочу заказать Moka 500g" class="btn-order">Заказать</a>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
     </div>
 
-    <div id="drip" class="category-header" data-aos="fade-up">
-        <p>Drip Bag Coffee</p>
-        <h2>Кофе в Дрип-Пакетах</h2>
-        <div style="width: 50px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
-    </div>
-
-    <div class="products-grid">
-        <div class="product-card" data-aos="zoom-in">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1610632380989-680fe40816c6?auto=format&fit=crop&w=800&q=80" alt="Drip">
-            </div>
-            <div class="card-info">
-                <span class="weight">150 г • 12 пакетиков</span>
-                <h4>Arabica Drip</h4>
-                <p class="desc">Идеальный фильтр-кофе в каждом пакетике.</p>
-                <span class="price-tag">3 209 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
-            </div>
-        </div>
-        <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1641931562955-442436f56c70?auto=format&fit=crop&w=800&q=80" alt="Drip">
-            </div>
-            <div class="card-info">
-                <span class="weight">150 г • 12 пакетиков</span>
-                <h4>Robusta Drip</h4>
-                <p class="desc">Для тех, кто любит покрепче. Удобно заваривать в офисе.</p>
-                <span class="price-tag">3 008 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
-            </div>
-        </div>
-        <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Drip">
-            </div>
-            <div class="card-info">
-                <span class="weight">150 г • 12 пакетиков</span>
-                <h4>Moka Drip</h4>
-                <p class="desc">Изысканный вкус сорта Мока в удобном формате.</p>
-                <span class="price-tag">3 974 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="instant" class="category-header" data-aos="fade-up">
-        <p>Instant Coffee</p>
-        <h2>Растворимый Кофе</h2>
-        <div style="width: 50px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
+    <div id="drip" class="category-header">
+        <h2>Дрип-Пакеты</h2>
     </div>
 
     <div class="products-grid">
         <div class="product-card" data-aos="fade-up">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&w=800&q=80" alt="3in1">
-            </div>
+            <div class="photo-frame"><span>Фото Дрип Арабика</span></div>
             <div class="card-info">
-                <span class="weight">850 гр • 50 стиков</span>
-                <h4>C7 Instant 3in1</h4>
-                <p class="desc">Классический микс кофе, сахара и сливок. Большая упаковка.</p>
-                <span class="price-tag">5 192 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
+                <h4>Arabica Drip</h4>
+                <p class="desc">12 пакетиков. Идеальный фильтр-кофе.</p>
+                <span class="price-tag">3 209 ₸</span>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
-
-        <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80" alt="Coconut">
-            </div>
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame"><span>Фото Дрип Робуста</span></div>
             <div class="card-info">
-                <span class="weight">850 гр • 50 стиков</span>
-                <h4>Coconut Cappuccino</h4>
-                <p class="desc">Кокосовый капучино 4в1. Хит продаж с нежным ароматом.</p>
-                <span class="price-tag">7 152 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
-            </div>
-        </div>
-
-         <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=800&q=80" alt="Durian">
-            </div>
-            <div class="card-info">
-                <span class="weight">272 гр • 16 стиков</span>
-                <h4>Durian Cappuccino</h4>
-                <p class="desc">Экзотика! Оригинальный напиток с ярким вкусом дуриана.</p>
-                <span class="price-tag">2 012 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
-            </div>
-        </div>
-
-        <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80" alt="Black">
-            </div>
-            <div class="card-info">
-                <span class="weight">60 гр • 50 стиков</span>
-                <h4>Instant Americano</h4>
-                <p class="desc">Чистый черный кофе без сахара. Легкая горчинка.</p>
-                <span class="price-tag">3 390 ₸</span>
-                <a href="#" class="btn-order">Заказать</a>
+                <h4>Robusta Drip</h4>
+                <p class="desc">12 пакетиков. Крепкий заряд бодрости.</p>
+                <span class="price-tag">3 008 ₸</span>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
             </div>
         </div>
     </div>
 
+    <div id="instant" class="category-header">
+        <h2>Растворимый Кофе</h2>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame"><span>Фото 3в1</span></div>
+            <div class="card-info">
+                <h4>C7 Instant 3in1</h4>
+                <p class="desc">Большая упаковка 50 стиков. Классика.</p>
+                <span class="price-tag">5 192 ₸</span>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
+            </div>
+        </div>
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame"><span>Фото Кокос</span></div>
+            <div class="card-info">
+                <h4>Coconut Cappuccino</h4>
+                <p class="desc">50 стиков. Нежный кокосовый вкус.</p>
+                <span class="price-tag">7 152 ₸</span>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
+            </div>
+        </div>
+        <div class="product-card" data-aos="fade-up">
+            <div class="photo-frame"><span>Фото Дуриан</span></div>
+            <div class="card-info">
+                <h4>Durian Cappuccino</h4>
+                <p class="desc">16 стиков. Экзотический вкус дуриана.</p>
+                <span class="price-tag">2 012 ₸</span>
+                <a href="https://wa.me/77082714240" class="btn-order">Заказать</a>
+            </div>
+        </div>
+    </div>
 
     <footer id="contacts">
-        <div class="footer-info">
-            <div class="req-block">
-                <h3><i class="fas fa-building" style="color:var(--gold)"></i> Дистрибьютор</h3>
-                <p style="color: #888; margin-bottom: 20px;">
-                    Официальный партнер Huca Food в Казахстане. 
-                    Прямые поставки свежего кофе.
-                </p>
-                <div style="font-size: 14px;">
-                    <p><i class="fas fa-phone"></i> +7 708 271 4240</p>
-                    <p><i class="fas fa-envelope"></i> rgasiagoods@gmail.com</p>
-                </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: left; color: #888; font-size: 14px; line-height: 2;">
+            <h3 style="color: var(--gold); text-align: center; margin-bottom: 30px;">Реквизиты</h3>
+            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
+                <span>Компания:</span> <span style="color: #fff">ТОО "RG Asia Goods"</span>
             </div>
+            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
+                <span>БИН:</span> <span style="color: #fff">250740015886</span>
+            </div>
+            <div style="border-bottom: 1px solid #222; display: flex; justify-content: space-between;">
+                <span>Контакты:</span> <span style="color: #fff">+7 708 271 4240</span>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <p>г. Каскелен, ул. Кызылсай, 4/3</p>
+            </div>
+        </div>
 
-            <div class="req-block">
-                <h3>Реквизиты</h3>
-                <div class="req-row">
-                    <span>Компания</span>
-                    <span>ТОО "RG Asia Goods"</span>
-                </div>
-                <div class="req-row">
-                    <span>БИН</span>
-                    <span>250740015886</span>
-                </div>
-                <div class="req-row">
-                    <span>Адрес</span>
-                    <span>г. Каскелен, ул. Кызылсай, 4/3</span>
-                </div>
-                <div class="req-row">
-                    <span>Банк</span>
-                    <span>АО "KASPI BANK"</span>
-                </div>
-                <div class="req-row">
-                    <span>IBAN</span>
-                    <span>KZ08722S000046965837</span>
-                </div>
-                <div class="req-row">
-                    <span>Руководитель</span>
-                    <span>Муканов Рафаэль</span>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; padding: 20px; font-size: 12px; color: #444; border-top: 1px solid #1a1a1a;">
-            &copy; 2026 Huca Food Kazakhstan. All rights reserved.
-        </div>
+        <br><br>
+        <a href="https://anukenn.vercel.app/" target="_blank" class="dev-link">
+            Разработка сайта: Anuken
+        </a>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        // Скрипт для открытия/закрытия меню
+        function toggleMenu() {
+            const nav = document.getElementById('mobileNav');
+            const overlay = document.querySelector('.overlay');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
